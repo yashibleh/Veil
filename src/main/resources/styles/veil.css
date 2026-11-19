@@ -1,0 +1,334 @@
+/* ==========================================================================
+   VEIL — Editorial Dark Theme (Inspired by Emotion Agency)
+   Palette: Obsidian #08070C | Midnight #100D18 | Surface #161224
+            Hairline #262038 | Muted Violet #8B81A8 | Lavender #C4B5FD
+            Off-White #F2EFFA
+   No generic gradients, no neon glows, no repetitive nested cards.
+   ========================================================================== */
+
+.root {
+    -fx-background-color: #08070C;
+    -fx-font-family: "Segoe UI", "Inter", "SF Pro Text", "Helvetica Neue", sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #F2EFFA;
+}
+
+/* Editorial Navigation Rail */
+.nav-rail {
+    -fx-background-color: #0C0A12;
+    -fx-border-color: transparent #221D33 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 28 18 24 22;
+}
+
+.brand-title {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F2EFFA;
+}
+
+.brand-subtitle {
+    -fx-font-family: "Consolas", "JetBrains Mono", "Menlo", monospace;
+    -fx-font-size: 10px;
+    -fx-text-fill: #8B81A8;
+}
+
+.nav-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9A91B5;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 9 12 9 12;
+    -fx-font-size: 13px;
+    -fx-background-radius: 2;
+    -fx-border-color: transparent transparent transparent transparent;
+    -fx-border-width: 0 0 0 2;
+    -fx-cursor: hand;
+}
+
+.nav-item:hover {
+    -fx-background-color: #151122;
+    -fx-text-fill: #F2EFFA;
+}
+
+.nav-item-active {
+    -fx-background-color: #161224;
+    -fx-text-fill: #F2EFFA;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent transparent transparent #C4B5FD;
+    -fx-border-width: 0 0 0 2;
+}
+
+/* Main Content Stage */
+.content-stage {
+    -fx-background-color: #08070C;
+    -fx-padding: 32 42 36 42;
+}
+
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: #08070C;
+}
+
+/* Editorial Typography */
+.display-heading {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 32px;
+    -fx-text-fill: #F2EFFA;
+}
+
+.display-italic {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-style: italic;
+    -fx-font-size: 32px;
+    -fx-text-fill: #C4B5FD;
+}
+
+.section-kicker {
+    -fx-font-family: "Consolas", "JetBrains Mono", "Menlo", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #8B81A8;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F2EFFA;
+}
+
+.body-muted {
+    -fx-text-fill: #A49BBE;
+    -fx-font-size: 13px;
+}
+
+.mono-text {
+    -fx-font-family: "Consolas", "JetBrains Mono", "Menlo", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #DFD8F5;
+}
+
+.metric-value {
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-size: 36px;
+    -fx-text-fill: #F2EFFA;
+}
+
+.metric-label {
+    -fx-font-family: "Consolas", "JetBrains Mono", "Menlo", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #8B81A8;
+}
+
+/* Structural Panels & Hairlines */
+.editorial-panel {
+    -fx-background-color: #100D18;
+    -fx-border-color: #241E35;
+    -fx-border-width: 1;
+    -fx-padding: 20 22 20 22;
+}
+
+.hairline-divider {
+    -fx-background-color: #241E35;
+    -fx-min-height: 1;
+    -fx-max-height: 1;
+}
+
+/* Status Indicators */
+.status-running {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #6EE7B7;
+}
+
+.status-stopped {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #FDA4AF;
+}
+
+.status-warn {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #FCD34D;
+}
+
+.status-local {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #C4B5FD;
+}
+
+/* Buttons */
+.btn-primary {
+    -fx-background-color: #C4B5FD;
+    -fx-text-fill: #08070C;
+    -fx-font-weight: bold;
+    -fx-padding: 9 18 9 18;
+    -fx-background-radius: 2;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #DDD6FE;
+}
+
+.btn-secondary {
+    -fx-background-color: #161224;
+    -fx-text-fill: #F2EFFA;
+    -fx-border-color: #2E2744;
+    -fx-border-width: 1;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 2;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #211B33;
+    -fx-border-color: #C4B5FD;
+}
+
+.btn-danger {
+    -fx-background-color: #2A121B;
+    -fx-text-fill: #FDA4AF;
+    -fx-border-color: #5C2235;
+    -fx-border-width: 1;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 2;
+    -fx-cursor: hand;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #3D1926;
+}
+
+/* Form Controls */
+.text-field, .password-field, .text-area, .combo-box, .spinner {
+    -fx-background-color: #120F1C;
+    -fx-text-fill: #F2EFFA;
+    -fx-border-color: #2A233E;
+    -fx-border-width: 1;
+    -fx-background-radius: 2;
+    -fx-prompt-text-fill: #6B6285;
+}
+
+.text-area .content {
+    -fx-background-color: #120F1C;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #C4B5FD;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #120F1C;
+    -fx-text-fill: #F2EFFA;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #120F1C;
+    -fx-border-color: #2A233E;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #211B33;
+}
+
+.check-box {
+    -fx-text-fill: #E4DEF5;
+}
+
+.check-box .box {
+    -fx-background-color: #120F1C;
+    -fx-border-color: #3A3154;
+    -fx-border-radius: 2;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #C4B5FD;
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: #100D18;
+    -fx-border-color: #241E35;
+    -fx-border-width: 1;
+    -fx-table-cell-border-color: #1D182C;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #151122;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #241E35 transparent;
+    -fx-size: 34;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #9A91B5;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell {
+    -fx-background-color: #100D18;
+    -fx-text-fill: #F2EFFA;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #120F1C;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #231C38;
+}
+
+.table-cell {
+    -fx-text-fill: #EAE5F7;
+    -fx-padding: 7 10 7 10;
+}
+
+/* Notification Banner */
+.notification-bar {
+    -fx-background-color: #181329;
+    -fx-border-color: #C4B5FD;
+    -fx-border-width: 0 0 0 3;
+    -fx-padding: 10 16 10 16;
+}
+
+/* Charts */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: #100D18;
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: #1F1A2E;
+}
+
+.axis-label, .axis {
+    -fx-tick-label-fill: #9A91B5;
+    -fx-text-fill: #9A91B5;
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: #C4B5FD;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #7C6BB5;
+}
+
+/* Honest Empty State */
+.empty-state {
+    -fx-background-color: #0E0B15;
+    -fx-border-color: #241E35;
+    -fx-border-style: dashed;
+    -fx-border-width: 1;
+    -fx-padding: 36 28 36 28;
+    -fx-alignment: CENTER;
+}

@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q1 incident summary to engineer0@acme-corp.org immediately."
+  },
+  {
+    "id": 2,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q2 incident summary to engineer1@acme-corp.org immediately."
+  },
+  {
+    "id": 3,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q3 incident summary to engineer2@acme-corp.org immediately."
+  },
+  {
+    "id": 4,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q4 incident summary to engineer3@acme-corp.org immediately."
+  },
+  {
+    "id": 5,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q1 incident summary to engineer4@acme-corp.org immediately."
+  },
+  {
+    "id": 6,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q2 incident summary to engineer5@acme-corp.org immediately."
+  },
+  {
+    "id": 7,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q3 incident summary to engineer6@acme-corp.org immediately."
+  },
+  {
+    "id": 8,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q4 incident summary to engineer7@acme-corp.org immediately."
+  },
+  {
+    "id": 9,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q1 incident summary to engineer8@acme-corp.org immediately."
+  },
+  {
+    "id": 10,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q2 incident summary to engineer9@acme-corp.org immediately."
+  },
+  {
+    "id": 11,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q3 incident summary to engineer10@acme-corp.org immediately."
+  },
+  {
+    "id": 12,
+    "category": "EMAIL",
+    "sensitive": true,
+    "prompt": "Please forward the Q4 incident summary to engineer11@acme-corp.org immediately."
+  },
+  {
+    "id": 13,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.1.20 during deployment."
+  },
+  {
+    "id": 14,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.2.21 during deployment."
+  },
+  {
+    "id": 15,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.3.22 during deployment."
+  },
+  {
+    "id": 16,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.4.23 during deployment."
+  },
+  {
+    "id": 17,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.5.24 during deployment."
+  },
+  {
+    "id": 18,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.6.25 during deployment."
+  },
+  {
+    "id": 19,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.7.26 during deployment."
+  },
+  {
+    "id": 20,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.8.27 during deployment."
+  },
+  {
+    "id": 21,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.9.28 during deployment."
+  },
+  {
+    "id": 22,
+    "category": "IP_ADDRESS",
+    "sensitive": true,
+    "prompt": "The firewall dropped packets from 192.168.10.29 during deployment."
+  },
+  {
+    "id": 23,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx00Yz123456 in staging."
+  },
+  {
+    "id": 24,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx01Yz123456 in staging."
+  },
+  {
+    "id": 25,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx02Yz123456 in staging."
+  },
+  {
+    "id": 26,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx03Yz123456 in staging."
+  },
+  {
+    "id": 27,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx04Yz123456 in staging."
+  },
+  {
+    "id": 28,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx05Yz123456 in staging."
+  },
+  {
+    "id": 29,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx06Yz123456 in staging."
+  },
+  {
+    "id": 30,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx07Yz123456 in staging."
+  },
+  {
+    "id": 31,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx08Yz123456 in staging."
+  },
+  {
+    "id": 32,
+    "category": "API_KEY",
+    "sensitive": true,
+    "prompt": "Set OPENAI_KEY=sk-proj-AbCdEfGhIjKlMnOpQrStUvWx09Yz123456 in staging."
+  },
+  {
+    "id": 33,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!00#XyZ before restart."
+  },
+  {
+    "id": 34,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!01#XyZ before restart."
+  },
+  {
+    "id": 35,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!02#XyZ before restart."
+  },
+  {
+    "id": 36,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!03#XyZ before restart."
+  },
+  {
+    "id": 37,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!04#XyZ before restart."
+  },
+  {
+    "id": 38,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!05#XyZ before restart."
+  },
+  {
+    "id": 39,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!06#XyZ before restart."
+  },
+  {
+    "id": 40,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!07#XyZ before restart."
+  },
+  {
+    "id": 41,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!08#XyZ before restart."
+  },
+  {
+    "id": 42,
+    "category": "PASSWORD",
+    "sensitive": true,
+    "prompt": "Update config.yaml with db_password=Tr0ub4dor!09#XyZ before restart."
+  },
+  {
+    "id": 43,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user0:P@ssW0rd09@10.0.4.10:5432/ledger."
+  },
+  {
+    "id": 44,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user1:P@ssW0rd19@10.0.4.11:5432/ledger."
+  },
+  {
+    "id": 45,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user2:P@ssW0rd29@10.0.4.12:5432/ledger."
+  },
+  {
+    "id": 46,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user3:P@ssW0rd39@10.0.4.13:5432/ledger."
+  },
+  {
+    "id": 47,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user4:P@ssW0rd49@10.0.4.14:5432/ledger."
+  },
+  {
+    "id": 48,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user5:P@ssW0rd59@10.0.4.15:5432/ledger."
+  },
+  {
+    "id": 49,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user6:P@ssW0rd69@10.0.4.16:5432/ledger."
+  },
+  {
+    "id": 50,
+    "category": "DB_CREDENTIAL",
+    "sensitive": true,
+    "prompt": "Migration failed on postgres://svc_user7:P@ssW0rd79@10.0.4.17:5432/ledger."
+  },
+  {
+    "id": 51,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 2341 5678 1020 for onboarding."
+  },
+  {
+    "id": 52,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 3341 5678 1127 for onboarding."
+  },
+  {
+    "id": 53,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 4341 5678 1225 for onboarding."
+  },
+  {
+    "id": 54,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 5341 5678 1328 for onboarding."
+  },
+  {
+    "id": 55,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 6341 5678 1420 for onboarding."
+  },
+  {
+    "id": 56,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 7341 5678 1525 for onboarding."
+  },
+  {
+    "id": 57,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 8341 5678 1620 for onboarding."
+  },
+  {
+    "id": 58,
+    "category": "AADHAAR",
+    "sensitive": true,
+    "prompt": "Verify KYC record with Aadhaar 2341 5678 1728 for onboarding."
+  },
+  {
+    "id": 59,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1230F for vendor payout."
+  },
+  {
+    "id": 60,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1231F for vendor payout."
+  },
+  {
+    "id": 61,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1232F for vendor payout."
+  },
+  {
+    "id": 62,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1233F for vendor payout."
+  },
+  {
+    "id": 63,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1234F for vendor payout."
+  },
+  {
+    "id": 64,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1235F for vendor payout."
+  },
+  {
+    "id": 65,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1236F for vendor payout."
+  },
+  {
+    "id": 66,
+    "category": "PAN",
+    "sensitive": true,
+    "prompt": "Tax filing requires PAN ABCPE1237F for vendor payout."
+  },
+  {
+    "id": 67,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0101 on checkout."
+  },
+  {
+    "id": 68,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0119 on checkout."
+  },
+  {
+    "id": 69,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0127 on checkout."
+  },
+  {
+    "id": 70,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0135 on checkout."
+  },
+  {
+    "id": 71,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0143 on checkout."
+  },
+  {
+    "id": 72,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0150 on checkout."
+  },
+  {
+    "id": 73,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0168 on checkout."
+  },
+  {
+    "id": 74,
+    "category": "CREDIT_CARD",
+    "sensitive": true,
+    "prompt": "Customer payment failed for card 4532-0151-1283-0176 on checkout."
+  },
+  {
+    "id": 75,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43210 if latency spikes."
+  },
+  {
+    "id": 76,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43211 if latency spikes."
+  },
+  {
+    "id": 77,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43212 if latency spikes."
+  },
+  {
+    "id": 78,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43213 if latency spikes."
+  },
+  {
+    "id": 79,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43214 if latency spikes."
+  },
+  {
+    "id": 80,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43215 if latency spikes."
+  },
+  {
+    "id": 81,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43216 if latency spikes."
+  },
+  {
+    "id": 82,
+    "category": "PHONE",
+    "sensitive": true,
+    "prompt": "Call on-call support at +91 98765 43217 if latency spikes."
+  },
+  {
+    "id": 83,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Priya Nair approved the production hotfix."
+  },
+  {
+    "id": 84,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Rahul Verma approved the production hotfix."
+  },
+  {
+    "id": 85,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Anita Desai approved the production hotfix."
+  },
+  {
+    "id": 86,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Vikram Mehta approved the production hotfix."
+  },
+  {
+    "id": 87,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Meera Iyer approved the production hotfix."
+  },
+  {
+    "id": 88,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Karan Kapoor approved the production hotfix."
+  },
+  {
+    "id": 89,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Rohan Gupta approved the production hotfix."
+  },
+  {
+    "id": 90,
+    "category": "PERSONAL_NAME",
+    "sensitive": true,
+    "prompt": "Employee: Neha Joshi approved the production hotfix."
+  },
+  {
+    "id": 91,
+    "category": "CODE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Rotate PROD_CLUSTER_MASTER and check billing-node-0.corp.internal."
+  },
+  {
+    "id": 92,
+    "category": "CODE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Rotate PROD_CLUSTER_MASTER and check billing-node-1.corp.internal."
+  },
+  {
+    "id": 93,
+    "category": "CODE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Rotate PROD_CLUSTER_MASTER and check billing-node-2.corp.internal."
+  },
+  {
+    "id": 94,
+    "category": "CODE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Rotate PROD_CLUSTER_MASTER and check billing-node-3.corp.internal."
+  },
+  {
+    "id": 95,
+    "category": "CODE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Rotate PROD_CLUSTER_MASTER and check billing-node-4.corp.internal."
+  },
+  {
+    "id": 96,
+    "category": "PRIVATE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Audit ticket EMP-48290 was escalated to security."
+  },
+  {
+    "id": 97,
+    "category": "PRIVATE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Audit ticket EMP-48291 was escalated to security."
+  },
+  {
+    "id": 98,
+    "category": "PRIVATE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Audit ticket EMP-48292 was escalated to security."
+  },
+  {
+    "id": 99,
+    "category": "PRIVATE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Audit ticket EMP-48293 was escalated to security."
+  },
+  {
+    "id": 100,
+    "category": "PRIVATE_IDENTIFIER",
+    "sensitive": true,
+    "prompt": "Audit ticket EMP-48294 was escalated to security."
+  },
+  {
+    "id": 101,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain the difference between AES-GCM and AES-CBC encryption modes."
+  },
+  {
+    "id": 102,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a Java 17 record class representing a point in 2D space."
+  },
+  {
+    "id": 103,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How does PBKDF2WithHmacSHA256 protect stored vault keys?"
+  },
+  {
+    "id": 104,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Summarize the benefits of Server-Sent Events over polling."
+  },
+  {
+    "id": 105,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Refactor this Spring Boot controller to return HTTP 200 OK."
+  },
+  {
+    "id": 106,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What is the time complexity of binary search on a sorted array?"
+  },
+  {
+    "id": 107,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Show an example of a placeholder: api_key=YOUR_API_KEY_PLACEHOLDER"
+  },
+  {
+    "id": 108,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "In documentation, write password=changeme so developers replace it."
+  },
+  {
+    "id": 109,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Upgrade dependency org.openjfx:javafx-controls to version v21.0.4."
+  },
+  {
+    "id": 110,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Release v1.2.3.4 fixes a memory leak in the connection pool."
+  },
+  {
+    "id": 111,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Order reference 2341 2341 2347 failed checksum validation as expected."
+  },
+  {
+    "id": 112,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Tracking number 4532-0151-1283-0367 is not a valid Luhn card number."
+  },
+  {
+    "id": 113,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How do I configure Maven Surefire plugin for JUnit 5?"
+  },
+  {
+    "id": 114,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Compare Strategy pattern and Adapter pattern in object-oriented design."
+  },
+  {
+    "id": 115,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain how Java HttpClient handles connection timeouts."
+  },
+  {
+    "id": 116,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a SQL query to group sales by month and sort descending."
+  },
+  {
+    "id": 117,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What are best practices for handling InterruptedException in Java?"
+  },
+  {
+    "id": 118,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Describe how garbage collection works in OpenJDK 17."
+  },
+  {
+    "id": 119,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Generate a Markdown table comparing SQLite and PostgreSQL."
+  },
+  {
+    "id": 120,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Why should local development servers bind to loopback instead of all interfaces?"
+  },
+  {
+    "id": 121,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain the difference between AES-GCM and AES-CBC encryption modes. (case #21)"
+  },
+  {
+    "id": 122,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a Java 17 record class representing a point in 2D space. (case #22)"
+  },
+  {
+    "id": 123,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How does PBKDF2WithHmacSHA256 protect stored vault keys? (case #23)"
+  },
+  {
+    "id": 124,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Summarize the benefits of Server-Sent Events over polling. (case #24)"
+  },
+  {
+    "id": 125,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Refactor this Spring Boot controller to return HTTP 200 OK. (case #25)"
+  },
+  {
+    "id": 126,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What is the time complexity of binary search on a sorted array? (case #26)"
+  },
+  {
+    "id": 127,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Show an example of a placeholder: api_key=YOUR_API_KEY_PLACEHOLDER (case #27)"
+  },
+  {
+    "id": 128,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "In documentation, write password=changeme so developers replace it. (case #28)"
+  },
+  {
+    "id": 129,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Upgrade dependency org.openjfx:javafx-controls to version v21.0.4. (case #29)"
+  },
+  {
+    "id": 130,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Release v1.2.3.4 fixes a memory leak in the connection pool. (case #30)"
+  },
+  {
+    "id": 131,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Order reference 2341 2341 2347 failed checksum validation as expected. (case #31)"
+  },
+  {
+    "id": 132,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Tracking number 4532-0151-1283-0367 is not a valid Luhn card number. (case #32)"
+  },
+  {
+    "id": 133,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How do I configure Maven Surefire plugin for JUnit 5? (case #33)"
+  },
+  {
+    "id": 134,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Compare Strategy pattern and Adapter pattern in object-oriented design. (case #34)"
+  },
+  {
+    "id": 135,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain how Java HttpClient handles connection timeouts. (case #35)"
+  },
+  {
+    "id": 136,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a SQL query to group sales by month and sort descending. (case #36)"
+  },
+  {
+    "id": 137,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What are best practices for handling InterruptedException in Java? (case #37)"
+  },
+  {
+    "id": 138,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Describe how garbage collection works in OpenJDK 17. (case #38)"
+  },
+  {
+    "id": 139,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Generate a Markdown table comparing SQLite and PostgreSQL. (case #39)"
+  },
+  {
+    "id": 140,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Why should local development servers bind to loopback instead of all interfaces? (case #40)"
+  },
+  {
+    "id": 141,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain the difference between AES-GCM and AES-CBC encryption modes. (case #41)"
+  },
+  {
+    "id": 142,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a Java 17 record class representing a point in 2D space. (case #42)"
+  },
+  {
+    "id": 143,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How does PBKDF2WithHmacSHA256 protect stored vault keys? (case #43)"
+  },
+  {
+    "id": 144,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Summarize the benefits of Server-Sent Events over polling. (case #44)"
+  },
+  {
+    "id": 145,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Refactor this Spring Boot controller to return HTTP 200 OK. (case #45)"
+  },
+  {
+    "id": 146,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What is the time complexity of binary search on a sorted array? (case #46)"
+  },
+  {
+    "id": 147,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Show an example of a placeholder: api_key=YOUR_API_KEY_PLACEHOLDER (case #47)"
+  },
+  {
+    "id": 148,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "In documentation, write password=changeme so developers replace it. (case #48)"
+  },
+  {
+    "id": 149,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Upgrade dependency org.openjfx:javafx-controls to version v21.0.4. (case #49)"
+  },
+  {
+    "id": 150,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Release v1.2.3.4 fixes a memory leak in the connection pool. (case #50)"
+  },
+  {
+    "id": 151,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Order reference 2341 2341 2347 failed checksum validation as expected. (case #51)"
+  },
+  {
+    "id": 152,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Tracking number 4532-0151-1283-0367 is not a valid Luhn card number. (case #52)"
+  },
+  {
+    "id": 153,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How do I configure Maven Surefire plugin for JUnit 5? (case #53)"
+  },
+  {
+    "id": 154,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Compare Strategy pattern and Adapter pattern in object-oriented design. (case #54)"
+  },
+  {
+    "id": 155,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain how Java HttpClient handles connection timeouts. (case #55)"
+  },
+  {
+    "id": 156,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a SQL query to group sales by month and sort descending. (case #56)"
+  },
+  {
+    "id": 157,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What are best practices for handling InterruptedException in Java? (case #57)"
+  },
+  {
+    "id": 158,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Describe how garbage collection works in OpenJDK 17. (case #58)"
+  },
+  {
+    "id": 159,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Generate a Markdown table comparing SQLite and PostgreSQL. (case #59)"
+  },
+  {
+    "id": 160,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Why should local development servers bind to loopback instead of all interfaces? (case #60)"
+  },
+  {
+    "id": 161,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain the difference between AES-GCM and AES-CBC encryption modes. (case #61)"
+  },
+  {
+    "id": 162,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a Java 17 record class representing a point in 2D space. (case #62)"
+  },
+  {
+    "id": 163,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How does PBKDF2WithHmacSHA256 protect stored vault keys? (case #63)"
+  },
+  {
+    "id": 164,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Summarize the benefits of Server-Sent Events over polling. (case #64)"
+  },
+  {
+    "id": 165,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Refactor this Spring Boot controller to return HTTP 200 OK. (case #65)"
+  },
+  {
+    "id": 166,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What is the time complexity of binary search on a sorted array? (case #66)"
+  },
+  {
+    "id": 167,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Show an example of a placeholder: api_key=YOUR_API_KEY_PLACEHOLDER (case #67)"
+  },
+  {
+    "id": 168,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "In documentation, write password=changeme so developers replace it. (case #68)"
+  },
+  {
+    "id": 169,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Upgrade dependency org.openjfx:javafx-controls to version v21.0.4. (case #69)"
+  },
+  {
+    "id": 170,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Release v1.2.3.4 fixes a memory leak in the connection pool. (case #70)"
+  },
+  {
+    "id": 171,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Order reference 2341 2341 2347 failed checksum validation as expected. (case #71)"
+  },
+  {
+    "id": 172,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Tracking number 4532-0151-1283-0367 is not a valid Luhn card number. (case #72)"
+  },
+  {
+    "id": 173,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How do I configure Maven Surefire plugin for JUnit 5? (case #73)"
+  },
+  {
+    "id": 174,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Compare Strategy pattern and Adapter pattern in object-oriented design. (case #74)"
+  },
+  {
+    "id": 175,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain how Java HttpClient handles connection timeouts. (case #75)"
+  },
+  {
+    "id": 176,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a SQL query to group sales by month and sort descending. (case #76)"
+  },
+  {
+    "id": 177,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What are best practices for handling InterruptedException in Java? (case #77)"
+  },
+  {
+    "id": 178,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Describe how garbage collection works in OpenJDK 17. (case #78)"
+  },
+  {
+    "id": 179,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Generate a Markdown table comparing SQLite and PostgreSQL. (case #79)"
+  },
+  {
+    "id": 180,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Why should local development servers bind to loopback instead of all interfaces? (case #80)"
+  },
+  {
+    "id": 181,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain the difference between AES-GCM and AES-CBC encryption modes. (case #81)"
+  },
+  {
+    "id": 182,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a Java 17 record class representing a point in 2D space. (case #82)"
+  },
+  {
+    "id": 183,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How does PBKDF2WithHmacSHA256 protect stored vault keys? (case #83)"
+  },
+  {
+    "id": 184,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Summarize the benefits of Server-Sent Events over polling. (case #84)"
+  },
+  {
+    "id": 185,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Refactor this Spring Boot controller to return HTTP 200 OK. (case #85)"
+  },
+  {
+    "id": 186,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What is the time complexity of binary search on a sorted array? (case #86)"
+  },
+  {
+    "id": 187,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Show an example of a placeholder: api_key=YOUR_API_KEY_PLACEHOLDER (case #87)"
+  },
+  {
+    "id": 188,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "In documentation, write password=changeme so developers replace it. (case #88)"
+  },
+  {
+    "id": 189,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Upgrade dependency org.openjfx:javafx-controls to version v21.0.4. (case #89)"
+  },
+  {
+    "id": 190,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Release v1.2.3.4 fixes a memory leak in the connection pool. (case #90)"
+  },
+  {
+    "id": 191,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Order reference 2341 2341 2347 failed checksum validation as expected. (case #91)"
+  },
+  {
+    "id": 192,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Tracking number 4532-0151-1283-0367 is not a valid Luhn card number. (case #92)"
+  },
+  {
+    "id": 193,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "How do I configure Maven Surefire plugin for JUnit 5? (case #93)"
+  },
+  {
+    "id": 194,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Compare Strategy pattern and Adapter pattern in object-oriented design. (case #94)"
+  },
+  {
+    "id": 195,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Explain how Java HttpClient handles connection timeouts. (case #95)"
+  },
+  {
+    "id": 196,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Write a SQL query to group sales by month and sort descending. (case #96)"
+  },
+  {
+    "id": 197,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "What are best practices for handling InterruptedException in Java? (case #97)"
+  },
+  {
+    "id": 198,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Describe how garbage collection works in OpenJDK 17. (case #98)"
+  },
+  {
+    "id": 199,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Generate a Markdown table comparing SQLite and PostgreSQL. (case #99)"
+  },
+  {
+    "id": 200,
+    "category": "NONE",
+    "sensitive": false,
+    "prompt": "Why should local development servers bind to loopback instead of all interfaces? (case #100)"
+  }
+]
