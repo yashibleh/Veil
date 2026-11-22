@@ -1,8 +1,0 @@
-veil\detection\DetectionEngineTest.class
-veil\sdk\VeilClientTest.class
-veil\policies\PolicyEngineTest.class
-veil\gateway\LocalApiGatewayTest.class
-veil\streaming\StreamingTokenRestorerTest.class
-veil\evaluation\DetectionEvaluationTest$1.class
-veil\vault\TokenVaultTest.class
-veil\evaluation\DetectionEvaluationTest.class
