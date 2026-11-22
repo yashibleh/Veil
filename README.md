@@ -14,7 +14,8 @@
 - **Reversible Tokenization & Encrypted Vault**: Session-isolated bidirectional mappings (`[EMAIL_001]`, `[IP_001]`, or realistic synthetic values) with optional **AES-256-GCM + PBKDF2WithHmacSHA256** persistent storage, lock/unlock, TTL expiry, and secure wipe.
 - **Privacy Policy Engine & Configurable Profiles**: Four enforcement strategies (`MASK`, `BLOCK`, `WARN`, `REALISTIC_FAKE`, plus `ALLOW`) bundled into editable built-in profiles (`Personal`, `Developer`, `Enterprise`, `Strict`) and custom profiles.
 - **Fragmented Streaming Restoration**: `StreamingTokenRestorer` incrementally buffers only minimal token-prefix tails so tokens split across SSE chunks (`[EMAIL_` + `001]`) restore cleanly without full-response buffering.
-- **Liquid-Glass Interface (WebGL2)**: no dashboard, no sidebar. A living glass orb that blooms into seven rooms (Breath, Routes, Masks, Rain, Depths, Atelier, Quiet). Every real request falls into the orb as a drop of glass; blocked ones bounce off. Runs in a chromeless Edge/Chrome app window served from a loopback-only control server, with a command bar (`/`) and system tray.
+- **Conversations (Salon)**: long, streaming, multi-turn chats with any configured provider, right inside the app. Every message is veiled on the way out and restored on the way back; each conversation keeps stable tokens for its whole life, only the newest message is re-scanned, and history is trimmed to a rolling window so it can run for hundreds of turns. Click a message's veil note to see exactly what the provider received.
+- **Liquid-Glass Interface (WebGL2)**: no dashboard, no sidebar. A living glass orb that blooms into seven rooms (Breath, Routes, Masks, Rain, Depths, Atelier, Quiet, and **Salon** for conversations). Every real request falls into the orb as a drop of glass; blocked ones bounce off. Runs in a chromeless Edge/Chrome app window served from a loopback-only control server, with a command bar (`/`) and system tray.
 - **Developer SDK (`veil.sdk.VeilClient`)**: Embed VEIL directly in Java services or CLI tools.
 
 ---
@@ -74,7 +75,7 @@ python -m http.server 5173      # or: npx serve .
 # open http://localhost:5173/?demo
 ```
 
-Keys: `/` or `Ctrl+K` command bar, `1`-`7` rooms, `Esc` back. WebGL2 is required for the glass; without it a CSS-glass fallback is used.
+Keys: `/` or `Ctrl+K` command bar, `1`-`8` rooms, `C` to start talking, `Esc` back. WebGL2 is required for the glass; without it a CSS-glass fallback is used.
 
 ## Documentation
 

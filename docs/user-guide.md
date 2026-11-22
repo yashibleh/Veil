@@ -24,3 +24,16 @@
 ## Testing & Debugging (**Atelier**, key `6`)
 
 Use the Atelier to watch detections light up as you type, then test how your active profile detects, masks, or blocks sample prompts before routing production workflows.
+
+
+## Talking to a model inside VEIL (Salon)
+
+Press `C` (or open **Salon**, key `8`). Pick a provider, optionally set the scene (a system prompt, which is veiled too), and write.
+
+- **Streaming**: replies appear as they are generated, rendered as markdown with copyable code blocks. The **■** button stops a reply; what has arrived is kept.
+- **What leaves your machine**: under each of your messages, the line "N veiled before it left" opens the exact text the provider received (tokens instead of your values).
+- **Long conversations**: the whole thread stays on screen, but only the most recent part is sent to the model each turn (default 48,000 characters, set in **Quiet**). A note appears when older messages slip out of the model's memory.
+- **Stable tokens**: within one conversation the same email or key always maps to the same token, so the model can reason about "[EMAIL_001]" across many turns.
+- **Policies still apply**: a BLOCK rule refuses the message (nothing is sent); a WARN rule asks you once, on that message only.
+- **Where it lives**: conversations are kept in memory only and vanish when VEIL quits. Use **Export .md** to keep one. "Forget it" also removes its vault session.
+- If the vault is locked, unlock it in **Depths** first.

@@ -20,7 +20,7 @@ const D = {
   gatewayConfig: { bindAddress: '127.0.0.1', port: 8080, requireLocalAuth: true, maxRequestBodyBytes: 2097152, rateLimitPerMinute: 120,
     requestTimeoutSeconds: 60, streamingAllowed: true, activeProvider: 'OPENAI', activeProfileId: 'developer', baseUrl: 'http://127.0.0.1:8080/v1',
     endpoint: 'http://127.0.0.1:8080/v1/chat/completions' },
-  settings: { sessionTtlMinutes: 60, logRetentionDays: 14, logPromptPreviews: false, reducedMotion: false, minimizeToTray: true,
+  settings: { chatContextChars: 48000, sessionTtlMinutes: 60, logRetentionDays: 14, logPromptPreviews: false, reducedMotion: false, minimizeToTray: true,
     desktopNotifications: true, enabledDetectors: {} },
   detectors: ['RegexDetector', 'SecretDetector', 'NameDetector', 'CodeIdentifierDetector', 'CustomRuleDetector'].map((name) => ({
     name, enabled: true, description: { RegexDetector: 'Emails, phones, cards (Luhn), Aadhaar (Verhoeff), PAN, IPs, internal URLs, DB URIs.',
@@ -150,5 +150,39 @@ export async function call(method, path, body = {}) {
   if ((m = route.match(/^\/api\/profile\/([\w-]+)\/duplicate$/))) { const src = D.profiles.find((p) => p.id === m[1]); const c = { ...J(src), id: 'custom-' + Math.random().toString(16).slice(2, 8), name: body.name || src.name + ' (copy)', builtIn: false }; D.profiles.push(c); return J(c); }
   if ((m = route.match(/^\/api\/profile\/([\w-]+)$/)) && method === 'DELETE') { const p = D.profiles.find((x) => x.id === m[1]); if (!p || p.builtIn) throw new Error('Built-in masks cannot be deleted. Duplicate one instead.'); D.profiles = D.profiles.filter((x) => x.id !== m[1]); if (D.gatewayConfig.activeProfileId === m[1]) D.gatewayConfig.activeProfileId = 'developer'; return { ok: true }; }
   if (route.startsWith('/api/warn/')) return { ok: true };
+  if (route.startsWith('/api/chat')) return chatCall(method, route, body);
   throw new Error('demo: no route ' + key);
+}
+
+// ── conversations (demo) ──
+const convos = {};
+const cview = (c, full) => ({ id: c.id, title: c.title, session: 'chat-' + c.id, system: c.system, count: c.messages.length, updated: c.updated, busy: false, ...(full ? { messages: J(c.messages) } : {}) });
+export async function chatCall(method, route, body) {
+  if (route === '/api/chat' && method === 'GET') return Object.values(convos).sort((a, b) => b.updated.localeCompare(a.updated)).map((c) => cview(c, false));
+  if (route === '/api/chat' && method === 'POST') { const c = { id: Math.random().toString(16).slice(2, 10), title: 'New conversation', system: body.system || '', messages: [], updated: new Date().toISOString() }; convos[c.id] = c; return cview(c, false); }
+  const m = route.match(/^\/api\/chat\/(\w+)$/);
+  if (m && method === 'GET') { if (!convos[m[1]]) throw new Error('No such conversation'); return cview(convos[m[1]], true); }
+  if (m && method === 'DELETE') { delete convos[m[1]]; return { ok: true }; }
+  throw new Error('demo: no route ' + method + ' ' + route);
+}
+export async function chatStream(body, on, signal) {
+  const c = convos[body.id]; if (!c) { on({ t: 'error', message: 'That conversation no longer exists.', status: 404 }); return; }
+  const sid = 'chat-' + c.id; const r = seal(body.text, sid);
+  if (r.blocked) { on({ t: 'error', message: `Blocked by privacy policy (${prof().name}): detected ${r.blocked.categoryName}`, status: 403, blocked: true }); return; }
+  const cats = {}; r.ents.forEach((e) => { cats[e.categoryName] = (cats[e.categoryName] || 0) + 1; });
+  const prov = D.providers.find((p) => p.type === (body.provider || D.gatewayConfig.activeProvider));
+  const budget = D.settings.chatContextChars; let used = 0, kept = 0;
+  for (let i = c.messages.length - 1; i >= 0; i--) { used += c.messages[i].content.length; if (used > budget && kept) break; kept++; }
+  on({ t: 'meta', sanitized: r.out, detected: r.ents.length, masked: r.ents.filter((e) => e.action !== 'ALLOW').length, categories: cats, trimmed: c.messages.length - kept, provider: prov.name, model: prov.model });
+  const reply = `Got it. Here is what I understood from your message:\n\n> ${body.text}\n\nA few things worth knowing:\n\n1. **Sensitive values** were swapped for tokens before this left your machine.\n2. They are swapped back in my answer, so you only ever see the real ones.\n3. This is demo mode, so I am only echoing. Connect a provider for real answers.\n\n\`\`\`js\nconsole.log("this thread has " + ${c.messages.length + 2} + " messages");\n\`\`\``;
+  let acc = '';
+  for (let i = 0; i < reply.length; i += 6) {
+    if (signal && signal.aborted) { const e = new Error('aborted'); e.name = 'AbortError'; if (acc) { c.messages.push({ role: 'user', content: body.text, wire: r.out, detected: r.ents.length, masked: r.ents.length, categories: cats }, { role: 'assistant', content: acc, provider: prov.name, model: prov.model }); } throw e; }
+    await wait(24); const piece = reply.slice(i, i + 6); acc += piece; on({ t: 'delta', d: piece });
+  }
+  if (!c.messages.length) c.title = body.text.slice(0, 60);
+  c.messages.push({ role: 'user', content: body.text, wire: r.out, detected: r.ents.length, masked: r.ents.filter((e) => e.action !== 'ALLOW').length, categories: cats }, { role: 'assistant', content: acc, provider: prov.name, model: prov.model });
+  c.updated = new Date().toISOString();
+  record({ sessionId: sid, source: 'SALON', detectedCount: r.ents.length, maskedCount: r.ents.length, categoryCounts: Object.fromEntries(r.ents.map((e) => [e.category, 1])), summaryNote: 'Conversation turn sanitized & restored' });
+  on({ t: 'done', reply: acc, model: prov.model, provider: prov.name, count: c.messages.length, title: c.title });
 }

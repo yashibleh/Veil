@@ -18,6 +18,7 @@ public class VeilConfig {
     private boolean reducedMotion = false;
     private boolean minimizeToTray = true;
     private boolean desktopNotifications = true;
+    private int chatContextChars = 48_000; // how much of a long conversation is re-sent each turn
 
     public VeilConfig() {
         for (ProviderType type : ProviderType.values()) {
@@ -28,6 +29,14 @@ public class VeilConfig {
         enabledDetectors.put("NameDetector", true);
         enabledDetectors.put("CodeIdentifierDetector", true);
         enabledDetectors.put("CustomRuleDetector", true);
+    }
+
+    public int getChatContextChars() {
+        return chatContextChars;
+    }
+
+    public void setChatContextChars(int chatContextChars) {
+        this.chatContextChars = chatContextChars;
     }
 
     public GatewayConfig getGateway() {

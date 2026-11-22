@@ -261,6 +261,136 @@ public class VeilCoreEngine {
         }
     }
 
+    // ───────────────────────── multi-turn conversations ─────────────────────────
+
+    /** Receives progress from a conversation turn. Called on the request thread. */
+    public interface TurnObserver {
+        /** The new user message has been sanitized (and approved by policy); the provider call is about to start. */
+        void onSanitized(SanitizationResult sanitized, ProviderType provider, String model);
+
+        /** A piece of the reply, already restored to original values. */
+        void onDelta(String restoredText);
+
+        /** True once the caller no longer wants the reply (e.g. the user pressed Stop). */
+        default boolean cancelled() {
+            return false;
+        }
+    }
+
+    /** Outcome of one conversation turn. {@code rawReply} is the provider's text with tokens still in place. */
+    public static final class TurnResult {
+        public final String sanitizedUser;
+        public final String rawReply;
+        public final String restoredReply;
+        public final String model;
+        public final ProviderType provider;
+        public final int detected;
+        public final int masked;
+        public final Map<EntityCategory, Integer> categories;
+        public final boolean cancelled;
+
+        TurnResult(String sanitizedUser, String rawReply, String restoredReply, String model, ProviderType provider,
+                   int detected, int masked, Map<EntityCategory, Integer> categories, boolean cancelled) {
+            this.sanitizedUser = sanitizedUser;
+            this.rawReply = rawReply;
+            this.restoredReply = restoredReply;
+            this.model = model;
+            this.provider = provider;
+            this.detected = detected;
+            this.masked = masked;
+            this.categories = categories;
+            this.cancelled = cancelled;
+        }
+    }
+
+    /**
+     * Runs one turn of a long conversation. Only the NEW user message is sanitized here; earlier turns
+     * arrive in {@code priorWire} exactly as they were sent to the provider before (tokens, not originals),
+     * so a WARN rule is asked about once, not on every turn, and token numbering stays stable all session long.
+     */
+    public TurnResult runChatTurn(String sessionId,
+                                  List<ChatMessage> priorWire,
+                                  String userText,
+                                  ProviderType providerOverride,
+                                  String source,
+                                  TurnObserver observer) throws ProviderException {
+        long startNs = System.nanoTime();
+        ProviderType providerType = providerOverride != null ? providerOverride : configManager.getConfig().getGateway().getActiveProvider();
+        ProviderConfig providerCfg = configManager.getConfig().getProviderConfig(providerType);
+        PrivacyProfile profile = getActiveProfile();
+        String model = providerCfg.getDefaultModel();
+        boolean stream = providerCfg.isStreamingEnabled();
+
+        SanitizationResult res = sanitizeText(sessionId, userText, profile);
+        int detected = res.getDetectedEntities().size();
+        int masked = res.getMaskedCount();
+        Map<EntityCategory, Integer> catCounts = new EnumMap<>(EntityCategory.class);
+        PolicyEngine.countByCategory(res.getDetectedEntities()).forEach((k, v) -> catCounts.merge(k, v, Integer::sum));
+
+        if (res.isBlocked()) {
+            long elapsed = (System.nanoTime() - startNs) / 1_000_000L;
+            recordAndNotify(buildEvent(sessionId, source, providerType, model, profile.getName(),
+                    res.isWarnTriggered() ? RequestEvent.Status.WARN_DENIED : RequestEvent.Status.BLOCKED,
+                    detected, masked, true, stream, elapsed, res.getBlockReason(), catCounts));
+            notifyAll("WARN", "Message held back by privacy policy", res.getBlockReason());
+            throw new ProviderException(res.getBlockReason(), 403);
+        }
+        observer.onSanitized(res, providerType, model);
+
+        List<ChatMessage> wire = new ArrayList<>(priorWire);
+        wire.add(new ChatMessage("user", res.getSanitizedText()));
+        ChatCompletionRequest request = new ChatCompletionRequest();
+        request.setMessages(wire);
+        request.setModel(model);
+        request.setStream(stream);
+
+        AIProviderAdapter adapter = providerRegistry.getAdapter(providerType);
+        String apiKey = credentialStore.getKey(providerType).orElse(null);
+        StringBuilder raw = new StringBuilder();
+        StringBuilder restored = new StringBuilder();
+        StreamingTokenRestorer restorer = stream ? new StreamingTokenRestorer(sessionId, tokenVault) : null;
+
+        try {
+            if (stream) {
+                adapter.streamChat(request, providerCfg, apiKey, chunk -> {
+                    raw.append(chunk);
+                    String out = restorer.processChunk(chunk);
+                    if (!out.isEmpty()) {
+                        restored.append(out);
+                        observer.onDelta(out);
+                    }
+                });
+                String tail = restorer.flush();
+                if (!tail.isEmpty()) {
+                    restored.append(tail);
+                    observer.onDelta(tail);
+                }
+            } else {
+                ChatCompletionResponse response = adapter.sendChat(request, providerCfg, apiKey);
+                String text = response.getFirstAssistantContent();
+                raw.append(text == null ? "" : text);
+                restored.append(tokenRestorer.restore(sessionId, raw.toString()));
+                observer.onDelta(restored.toString());
+            }
+        } catch (ProviderException e) {
+            long elapsed = (System.nanoTime() - startNs) / 1_000_000L;
+            if (observer.cancelled()) {
+                recordAndNotify(buildEvent(sessionId, source, providerType, model, profile.getName(), RequestEvent.Status.FORWARDED,
+                        detected, masked, false, stream, elapsed, "Stopped by user", catCounts));
+                return new TurnResult(res.getSanitizedText(), raw.toString(), restored.toString(), model, providerType, detected, masked, catCounts, true);
+            }
+            recordAndNotify(buildEvent(sessionId, source, providerType, model, profile.getName(), RequestEvent.Status.PROVIDER_ERROR,
+                    detected, masked, false, stream, elapsed, e.getMessage(), catCounts));
+            notifyAll("ERROR", "Provider request failed", e.getMessage());
+            throw e;
+        }
+        long elapsed = (System.nanoTime() - startNs) / 1_000_000L;
+        recordAndNotify(buildEvent(sessionId, source, providerType, model, profile.getName(), RequestEvent.Status.FORWARDED,
+                detected, masked, false, stream, elapsed,
+                providerType.isLocalOnly() ? "Conversation turn routed locally" : "Conversation turn sanitized & restored", catCounts));
+        return new TurnResult(res.getSanitizedText(), raw.toString(), restored.toString(), model, providerType, detected, masked, catCounts, false);
+    }
+
     public boolean testProviderConnection(ProviderType providerType) throws ProviderException {
         ProviderConfig cfg = configManager.getConfig().getProviderConfig(providerType);
         String apiKey = credentialStore.getKey(providerType).orElse(null);

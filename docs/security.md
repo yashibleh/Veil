@@ -36,3 +36,10 @@ The interface is served by `veil.web.ControlServer`, bound to `127.0.0.1` only (
 - **CSP**: `default-src 'self'`, no inline scripts, no remote fonts, images or scripts. The UI makes no third-party requests.
 - **Secrets**: API keys are write-only (only a masked form is returned). Vault originals are returned only when the Depths lens is switched on, and are dropped client-side when the room closes. Prompt text typed in the Atelier is sent only to this loopback server, and to a provider only if you press **Send**.
 - **WARN policy**: requests that hit a WARN rule pause until you answer in the UI (90 s timeout, then refuse). With no UI connected they are refused (fail-safe).
+
+## Conversations (Salon)
+
+- Conversations are held **in memory only**; nothing is written to disk and they end with the process. Each one owns a single vault session, deleted with the conversation.
+- Each message is stored twice: as you wrote it (shown to you) and in "wire" form (what the provider received). History is always re-sent in wire form, so original values are never sent to the provider on later turns, and only the new message is scanned, so WARN prompts are not repeated.
+- Replies are restored token by token while streaming, including tokens split across network chunks.
+- Conversation turns appear in Rain with the source `SALON`, like any other traffic.

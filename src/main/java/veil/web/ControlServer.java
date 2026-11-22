@@ -81,6 +81,7 @@ public final class ControlServer {
     private final String uiToken;
     private final List<SseClient> clients = new CopyOnWriteArrayList<>();
     private final Map<String, CompletableFuture<Boolean>> pendingWarns = new ConcurrentHashMap<>();
+    private final ChatService chat;
     private final HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3)).build();
     private ScheduledExecutorService heartbeat;
     private HttpServer server;
@@ -90,6 +91,7 @@ public final class ControlServer {
         this.core = core;
         this.gateway = gateway;
         this.onQuit = onQuit;
+        this.chat = new ChatService(core);
         byte[] raw = new byte[24];
         new SecureRandom().nextBytes(raw);
         this.uiToken = Base64.getUrlEncoder().withoutPadding().encodeToString(raw);
@@ -543,6 +545,28 @@ public final class ControlServer {
                 return;
             }
 
+            // ── conversations (Salon) ──
+            case "GET /api/chat":
+                json(ex, 200, chat.list());
+                return;
+            case "POST /api/chat":
+                try {
+                    json(ex, 200, chat.create(body(ex).path("system").asText("")));
+                } catch (IllegalArgumentException e) {
+                    throw new ApiException(400, e.getMessage());
+                } catch (IllegalStateException e) {
+                    throw new ApiException(423, e.getMessage() == null ? "The vault is locked. Unlock it in Depths first." : e.getMessage());
+                }
+                return;
+            case "POST /api/chat/stream": {
+                JsonNode b = body(ex);
+                ProviderType t = b.hasNonNull("provider") && !b.get("provider").asText().isBlank() ? providerOf(b.get("provider").asText()) : null;
+                Ndjson out = new Ndjson(ex);
+                chat.turn(b.path("id").asText(""), b.path("text").asText(""), t, out);
+                out.finish();
+                return;
+            }
+
             // ── settings ──
             case "POST /api/settings": {
                 JsonNode b = body(ex);
@@ -553,6 +577,7 @@ public final class ControlServer {
                 }
                 if (b.has("sessionTtlMinutes")) cfg.setSessionTtlMinutes(range(b.get("sessionTtlMinutes").asInt(), 1, 10_080, "session lifetime"));
                 if (b.has("logRetentionDays")) cfg.setLogRetentionDays(range(b.get("logRetentionDays").asInt(), 1, 365, "retention"));
+                if (b.has("chatContextChars")) cfg.setChatContextChars(range(b.get("chatContextChars").asInt(), 4_000, 400_000, "conversation memory"));
                 if (b.has("reducedMotion")) cfg.setReducedMotion(b.get("reducedMotion").asBoolean());
                 if (b.has("minimizeToTray")) cfg.setMinimizeToTray(b.get("minimizeToTray").asBoolean());
                 if (b.has("desktopNotifications")) cfg.setDesktopNotifications(b.get("desktopNotifications").asBoolean());
@@ -641,6 +666,19 @@ public final class ControlServer {
                 return;
             }
         }
+        if (path.startsWith("/api/chat/")) {
+            String id = path.substring("/api/chat/".length());
+            if ("GET".equals(method)) {
+                Map<String, Object> c = chat.get(id);
+                if (c == null) throw new ApiException(404, "No such conversation");
+                json(ex, 200, c);
+                return;
+            }
+            if ("DELETE".equals(method)) {
+                json(ex, 200, map("ok", chat.delete(id)));
+                return;
+            }
+        }
         if (path.startsWith("/api/warn/") && "POST".equals(method)) {
             String id = path.substring("/api/warn/".length());
             CompletableFuture<Boolean> f = pendingWarns.get(id);
@@ -715,7 +753,7 @@ public final class ControlServer {
         }
         return map("sessionTtlMinutes", c.getSessionTtlMinutes(), "logRetentionDays", c.getLogRetentionDays(),
                 "logPromptPreviews", c.isLogPromptPreviews(), "reducedMotion", c.isReducedMotion(),
-                "minimizeToTray", c.isMinimizeToTray(), "desktopNotifications", c.isDesktopNotifications(),
+                "chatContextChars", c.getChatContextChars(), "minimizeToTray", c.isMinimizeToTray(), "desktopNotifications", c.isDesktopNotifications(),
                 "enabledDetectors", det);
     }
 
@@ -791,6 +829,35 @@ public final class ControlServer {
         for (SseClient c : clients) {
             if (!c.send(event, data)) {
                 clients.remove(c);
+            }
+        }
+    }
+
+    /** Newline-delimited JSON writer for streamed conversation replies. Headers go out on first write. */
+    private static final class Ndjson implements ChatService.Sink {
+        private final HttpExchange ex;
+        private OutputStream os;
+
+        Ndjson(HttpExchange ex) {
+            this.ex = ex;
+        }
+
+        @Override
+        public synchronized void send(Map<String, Object> message) throws IOException {
+            byte[] bytes = (JsonUtil.mapper().writeValueAsString(message) + "\n").getBytes(StandardCharsets.UTF_8);
+            if (os == null) {
+                ex.getResponseHeaders().set("Content-Type", "application/x-ndjson; charset=utf-8");
+                ex.getResponseHeaders().set("Cache-Control", "no-store");
+                ex.sendResponseHeaders(200, 0);
+                os = ex.getResponseBody();
+            }
+            os.write(bytes);
+            os.flush();
+        }
+
+        synchronized void finish() throws IOException {
+            if (os == null) {
+                send(map("t", "done"));
             }
         }
     }

@@ -36,3 +36,34 @@ export function stream(on) {
   es.onerror = () => on('link', { up: false });
   return es;
 }
+
+// Streams one conversation turn as newline-delimited JSON: meta, delta..., done | error.
+export async function chatStream(body, onMessage, signal) {
+  if (demo) return demo.chatStream(body, onMessage, signal);
+  const res = await fetch('/api/chat/stream', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Veil-UI': '1' },
+    body: JSON.stringify(body),
+    credentials: 'same-origin',
+    signal,
+  });
+  if (!res.ok) {
+    let message = `HTTP ${res.status}`;
+    try { message = (await res.json()).error || message; } catch { /* not json */ }
+    throw new Error(message);
+  }
+  const reader = res.body.getReader();
+  const dec = new TextDecoder();
+  let buf = '';
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let nl;
+    while ((nl = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (line) { try { onMessage(JSON.parse(line)); } catch { /* skip a bad line */ } }
+    }
+  }
+}

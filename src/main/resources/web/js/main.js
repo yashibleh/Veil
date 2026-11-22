@@ -26,10 +26,10 @@ class Shape {
 }
 const orb = new Shape(120, 0.55), sheet = new Shape(130, 0.7), lens = new Shape(320, 0.85), dialog = new Shape(150, 0.7);
 const sats = ROOMS.map(() => new Shape(140, 0.6));
-const drops = Array.from({ length: 5 }, () => ({ s: new Shape(34, 0.5), live: false, phase: '', born: 0, bad: false, tx: 0, ty: 0 }));
+const drops = Array.from({ length: 4 }, () => ({ s: new Shape(34, 0.5), live: false, phase: '', born: 0, bad: false, tx: 0, ty: 0 }));
 const pulse = new Spring(0, 230, 0.3), calm = new Spring(1, 20, 1), blend = new Spring(46, 60, 1), frost = new Spring(0.3, 40, 1);
 const accent = [0.55, 0.45, 1]; const accentT = [0.55, 0.45, 1];
-const TINTS = [[0.55, 0.95, 0.85], [0.45, 0.7, 1], [0.8, 0.55, 1], [0.6, 0.85, 1], [0.45, 0.55, 1], [1, 0.75, 0.6], [0.75, 0.8, 0.95]];
+const TINTS = [[0.55, 0.95, 0.85], [0.45, 0.7, 1], [0.8, 0.55, 1], [0.6, 0.85, 1], [0.45, 0.55, 1], [1, 0.75, 0.6], [0.75, 0.8, 0.95], [1, 0.82, 0.55]];
 const ACCENTS = { personal: [0.25, 0.85, 0.75], developer: [0.55, 0.45, 1], enterprise: [0.3, 0.6, 1], strict: [1, 0.3, 0.4] };
 const DROP_TINT = { FORWARDED: [0.55, 0.95, 0.85], BLOCKED: [1, 0.3, 0.25], WARN_DENIED: [1, 0.7, 0.25], PROVIDER_ERROR: [1, 0.55, 0.3], AUTH_REJECTED: [0.9, 0.3, 0.8], VALIDATION_ERROR: [0.7, 0.7, 0.8] };
 
@@ -39,12 +39,12 @@ const renderer = createRenderer($('gl'));
 function dims() {
   W = innerWidth; H = innerHeight;
   // leave a clear band at the bottom for the status text, so the ring never touches it
-  const fit = (0.56 * H - 204) / 2.094;
+  const fit = (0.56 * H - 204) / 2.139;
   R = clamp(Math.min(clamp(Math.min(W, H * 0.95) * 0.15, 60, 160), fit), 56, 160);
 }
 const orbPos = () => (mode === 'hub' ? [W / 2, H / 2 - H * 0.06, R] : [W / 2, 30, 12]);
 function satPos(i) {
-  const a = -Math.PI / 2 + (i * 2 * Math.PI) / sats.length; const rr = R * 1.85; const [ox, oy] = [W / 2, H / 2 - H * 0.06];
+  const a = -Math.PI / 2 + Math.PI / sats.length + (i * 2 * Math.PI) / sats.length; const rr = R * 1.85; const [ox, oy] = [W / 2, H / 2 - H * 0.06];
   return [ox + Math.cos(a) * rr * (W > H ? 1.3 : 1), oy + Math.sin(a) * rr, R * 0.37];
 }
 function sheetRect() {
@@ -121,7 +121,7 @@ function mountRoom(i, delay) {
   setTimeout(() => {
     if (seq !== mountSeq || mode !== 'room') return;
     const body = $('roomBody'); clear(body);
-    inst = ROOMS[i].mount(ctx); body.append(inst.el); inst.update(); body.scrollTop = 0;
+    body.classList.toggle('fill', !!ROOMS[i].fill); inst = ROOMS[i].mount(ctx); body.append(inst.el); inst.update(); body.scrollTop = 0;
     $('room').hidden = false; requestAnimationFrame(() => $('room').classList.add('in'));
     nav.querySelectorAll('button').forEach((b) => b.classList.toggle('sel', Number(b.dataset.i) === i));
     const first = body.querySelector('button:not(:disabled), input'); if (first && matchMedia('(pointer: fine)').matches) first.focus({ preventScroll: true });
@@ -200,6 +200,7 @@ $('decYes').addEventListener('click', () => answerWarn(true)); $('decNo').addEve
 const cmdBox = $('cmd'), cmdIn = $('cmdIn'), cmdList = $('cmdList'); let cmdSel = 0, cmdItems = [];
 const act = (fn, ok) => async () => { try { await fn(); await reload(); if (ok) toast('INFO', ok); } catch (e) { toast('ERROR', 'Could not do that', e.message); } };
 const COMMANDS = () => [
+  { label: 'Start a conversation', hint: 'Salon · key C', run: () => openRoom(ROOMS.findIndex((r) => r.id === 'salon')) },
   ...ROOMS.map((r, i) => ({ label: `Open ${r.name}`, hint: r.tag, run: () => openRoom(i) })),
   { label: 'Wake the gateway', hint: 'start', run: act(() => call('POST', '/api/gateway/start'), 'The veil is listening.') },
   { label: 'Let the gateway rest', hint: 'stop', run: act(() => call('POST', '/api/gateway/stop'), 'The veil is resting.') },
@@ -230,7 +231,8 @@ addEventListener('keydown', (e) => {
   if (!S.state) return;
   if (((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) && cmdBox.hidden) { e.preventDefault(); openCmd(); return; }
   if (e.key === 'Escape') { if (!cmdBox.hidden) closeCmd(); else if (!$('decision').hidden) answerWarn(false); else if (mode === 'room') closeRoom(); else if (bloom) { bloom = false; layout(); } return; }
-  if (!typing && cmdBox.hidden && /^[1-7]$/.test(e.key)) openRoom(Number(e.key) - 1);
+  if (!typing && cmdBox.hidden && /^[1-8]$/.test(e.key)) openRoom(Number(e.key) - 1);
+  else if (!typing && cmdBox.hidden && e.key.toLowerCase() === 'c' && !e.ctrlKey && !e.metaKey) openRoom(ROOMS.findIndex((r) => r.id === 'salon'));
 });
 
 // ───────── pointer ─────────

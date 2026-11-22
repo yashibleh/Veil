@@ -5,11 +5,11 @@ export default {
   mount(ctx) {
     const { S, call } = ctx;
     const s0 = S.state.settings;
-    const d = { sessionTtlMinutes: s0.sessionTtlMinutes, logRetentionDays: s0.logRetentionDays, logPromptPreviews: s0.logPromptPreviews, reducedMotion: s0.reducedMotion,
+    const d = { chatContextChars: s0.chatContextChars || 48000, sessionTtlMinutes: s0.sessionTtlMinutes, logRetentionDays: s0.logRetentionDays, logPromptPreviews: s0.logPromptPreviews, reducedMotion: s0.reducedMotion,
       minimizeToTray: s0.minimizeToTray, desktopNotifications: s0.desktopNotifications, enabledDetectors: { ...s0.enabledDetectors } };
     const note = h('p', { class: 'note', 'aria-live': 'polite' });
     const save = btn('Seal these settings', async () => {
-      try { await call('POST', '/api/settings', { ...d, sessionTtlMinutes: Number(d.sessionTtlMinutes), logRetentionDays: Number(d.logRetentionDays) }); await ctx.reload(); save.hidden = true; note.textContent = ''; toast('INFO', 'Sealed', 'Settings saved.'); }
+      try { await call('POST', '/api/settings', { ...d, sessionTtlMinutes: Number(d.sessionTtlMinutes), chatContextChars: Number(d.chatContextChars), logRetentionDays: Number(d.logRetentionDays) }); await ctx.reload(); save.hidden = true; note.textContent = ''; toast('INFO', 'Sealed', 'Settings saved.'); }
       catch (e) { note.textContent = e.message; note.classList.add('bad'); }
     }, 'primary');
     save.hidden = true;
@@ -18,6 +18,7 @@ export default {
     const el = h('div', { class: 'quiet' }, h('p', { class: 'kicker' }, '07 · Settings'), h('h1', { class: 'giant' }, 'Quiet.'),
       h('h2', null, 'What looks'), eyes, h('hr'),
       sentence('Forget sessions after ', ink(d.sessionTtlMinutes, (v) => { d.sessionTtlMinutes = v; dirty(); }, { mono: true, min: 2, max: 6 }), ' minutes. Keep activity for ', ink(d.logRetentionDays, (v) => { d.logRetentionDays = v; dirty(); }, { mono: true, min: 2, max: 4 }), ' days.'),
+      sentence('A conversation remembers its last ', ink(d.chatContextChars, (v) => { d.chatContextChars = v; dirty(); }, { mono: true, min: 4, max: 7 }), ' characters when you talk to a model.'),
       sentence('Store prompt previews ', pebble(d.logPromptPreviews, (v) => { d.logPromptPreviews = v; dirty(); }, 'Prompt previews')),
       sentence('Calmer motion ', pebble(d.reducedMotion, (v) => { d.reducedMotion = v; dirty(); }, 'Reduced motion'), '   Hide to the tray on close ', pebble(d.minimizeToTray, (v) => { d.minimizeToTray = v; dirty(); }, 'Minimise to tray'),
         '   Desktop whispers ', pebble(d.desktopNotifications, (v) => { d.desktopNotifications = v; dirty(); }, 'Desktop notifications')),
